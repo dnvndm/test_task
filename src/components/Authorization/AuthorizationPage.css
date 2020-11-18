@@ -1,0 +1,19 @@
+.authorization {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 300px;
+}
+
+.authorization__form {
+   
+}
+
+.authorization__form input{
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.authorization__form button{
+    margin-top: 10px;
+}
