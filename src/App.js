@@ -1,10 +1,17 @@
-import {BrowserRouter, Route} from 'react-router-dom'
+import { useSelector } from 'react-redux';
+import {BrowserRouter, Redirect, Route} from 'react-router-dom'
 import AuthorizationPage from './components/Authorization/AuthorizationPage';
+import Hospitals from './components/HospitalsPage/Hospitals';
 
 function App() {
+  const isAuth = useSelector(state => state.login.isAuth)
+  console.log(isAuth)
   return (
     <BrowserRouter className="App">
-      <Route path='/' render={() => <AuthorizationPage />}/>
+      <Route exact path="/">
+      {isAuth ? <Redirect to="/hospitals" /> : <AuthorizationPage />}
+      </Route>
+      <Route path='/hospitals' render={() => <Hospitals />}/>
     </BrowserRouter>
   );
 }

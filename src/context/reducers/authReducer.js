@@ -1,5 +1,6 @@
 import { SET_USER_DATA } from "../types"
 import { authAPI } from "../../api"
+import { Redirect } from "react-router-dom"
 
 const initialState = {
     username: null,
@@ -13,7 +14,7 @@ export const authReducer = (state = initialState, action) => {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.payload
+                ...action.payload,
             }
 
         default:
@@ -21,15 +22,16 @@ export const authReducer = (state = initialState, action) => {
     }
 }
 
-export const setAuth = (username, password) => ({ type: SET_USER_DATA, payload: { username, password } })
+export const setAuth = (username, password, isAuth) => ({ type: SET_USER_DATA, payload: { username, password, isAuth } })
 
-export const login = (username, password) => async dispatch => {
+export const login = (username, password, isAuth) => async dispatch => {
     try {
-        let response = await authAPI.login(username, password)
+        let response = await authAPI.login(username, password, isAuth)
+        dispatch(setAuth(username, password, true))
         if(response?.data?.access) {
-            alert(response.data.access)
+            return isAuth === true
         }
-        dispatch(setAuth(response = { username, password }))
+        console.log(isAuth)
     } catch (e) {
         if (e) throw e
     }
