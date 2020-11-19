@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { LoginForm } from './AuthForm'
+import LoginForm from './AuthForm'
 import './AuthorizationPage.css'
 
 const AuthorizationPage = props => {

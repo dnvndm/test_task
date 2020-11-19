@@ -1,5 +1,4 @@
 import { SET_USER_DATA } from "../types"
-import { Axios } from 'axios'
 import { authAPI } from "../../api"
 
 const initialState = {
@@ -27,8 +26,13 @@ export const setAuth = (username, password) => ({ type: SET_USER_DATA, payload: 
 export const login = (username, password) => async dispatch => {
     try {
         let data = await authAPI.login(username, password)
-        console.log(data)
+        if(data.resultCode === 0) {
+            console.log(data)
+            dispatch(setAuth(data = {username, password}))
+        }
     } catch(e) {
-        if(e) throw new Error()
+        if(e) throw e
     }
 }
+
+// Test_ultra_task / T54321oikb 

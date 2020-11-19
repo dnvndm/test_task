@@ -1,11 +1,12 @@
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { Field, reduxForm } from 'redux-form'
-import { useState } from 'react';
+import { connect } from 'react-redux';
+import { login } from '../../context/reducers/authReducer';
 
-export const LoginForm = props => {
-    const onFinish = (values) => {
-        console.log('Received values of form: ', values);
+const LoginForm = props => {
+    const onFinish = (payload) => {
+        console.log('Received values of form: ', payload);
+        props.login(payload)
     };
 
     return (
@@ -43,22 +44,20 @@ export const LoginForm = props => {
                     placeholder="Введите пароль"
                 />
             </Form.Item>
-            <Form.Item>
-                <Form.Item name="remember" valuePropName="checked" noStyle>
-                    <Checkbox>Remember me</Checkbox>
-                </Form.Item>
-
-                <a className="login-form-forgot" href="">
-                    Forgot password
-        </a>
-            </Form.Item>
 
             <Form.Item>
                 <Button type="primary" htmlType="submit" className="login-form-button">
                     Войти
         </Button>
-        Or <a href="">register now!</a>
+        Or <a href="/">register now!</a>
             </Form.Item>
         </Form>
     );
 };
+
+
+const mapDispatchToProps = {
+    login
+}
+
+export default connect(null, mapDispatchToProps)(LoginForm)
