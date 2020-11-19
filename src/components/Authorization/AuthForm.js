@@ -1,23 +1,24 @@
 import { Form, Input, Button } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { login } from "../../context/reducers/authReducer";
 import { Alert } from "antd";
 import { useState } from "react";
 
 const LoginForm = (props) => {
+  const [alert, setAlert] = useState(false);
+  const isAuth = useSelector(state => state.login.isAuth);
   const onFinish = (payload) => {
     console.log("Received values of form: ", payload);
     props.login(payload.username, payload.password);
+    if (!isAuth) {
+      setAlert(true);
+    }
   };
 
   const onClose = (e) => {
     console.log(e, "I was closed.");
   };
-
-  const [alert, setAlert] = useState(false)
-
-  
 
   return (
     <>
@@ -68,19 +69,16 @@ const LoginForm = (props) => {
             Войти
           </Button>
         </Form.Item>
-          {
-              alert ?         <Alert
-              message="Error Text"
-              description="Error Description Error Description Error Description Error Description Error Description Error Description"
-              type="error"
-              closable
-              onClose={onClose}
-            /> : 
-            null
-          }
+        {alert ? (
+          <Alert
+            message="Error Text"
+            description="Error Description Error Description Error Description Error Description Error Description Error Description"
+            type="error"
+            closable
+            onClose={onClose}
+          />
+        ) : null}
       </Form>
-
-
     </>
   );
 };
