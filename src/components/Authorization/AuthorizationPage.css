@@ -1,19 +1,11 @@
+@import 'antd/dist/antd.css';
+
+html, body {margin: 0; height: 100%; overflow: hidden}
+
 .authorization {
     display: flex;
+    justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
     margin-top: 300px;
-}
-
-.authorization__form {
-   
-}
-
-.authorization__form input{
-    padding: 5px;
-    margin-top: 10px;
-}
-
-.authorization__form button{
-    margin-top: 10px;
 }
