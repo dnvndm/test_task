@@ -25,13 +25,13 @@ export const setAuth = (username, password) => ({ type: SET_USER_DATA, payload: 
 
 export const login = (username, password) => async dispatch => {
     try {
-        let data = await authAPI.login(username, password)
-        if(data.resultCode === 0) {
-            console.log(data)
-            dispatch(setAuth(data = {username, password}))
+        let response = await authAPI.login(username, password)
+        if(response?.data?.access) {
+            alert(response.data.access)
         }
-    } catch(e) {
-        if(e) throw e
+        dispatch(setAuth(response = { username, password }))
+    } catch (e) {
+        if (e) throw e
     }
 }
 
