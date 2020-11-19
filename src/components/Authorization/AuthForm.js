@@ -6,7 +6,7 @@ import { login } from '../../context/reducers/authReducer';
 const LoginForm = props => {
     const onFinish = (payload) => {
         console.log('Received values of form: ', payload);
-        props.login(payload)
+        props.login(payload.username, payload.password)
     };
 
     return (

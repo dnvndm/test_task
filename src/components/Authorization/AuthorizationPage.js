@@ -1,12 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import LoginForm from './AuthForm'
 import './AuthorizationPage.css'
 
 const AuthorizationPage = props => {
-    useEffect(() => {
-        
-    })
-
     return <div className="authorization">
         <LoginForm />
         <div>
