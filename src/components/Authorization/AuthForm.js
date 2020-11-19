@@ -6,11 +6,14 @@ import { Alert } from "antd";
 import { useState } from "react";
 
 const LoginForm = (props) => {
-  const [alert, setAlert] = useState(false);
   const isAuth = useSelector(state => state.login.isAuth);
+
+  const [alert, setAlert] = useState(false);
+
   const onFinish = (payload) => {
     console.log("Received values of form: ", payload);
     props.login(payload.username, payload.password);
+
     if (!isAuth) {
       setAlert(true);
     }
@@ -71,8 +74,8 @@ const LoginForm = (props) => {
         </Form.Item>
         {alert ? (
           <Alert
-            message="Error Text"
-            description="Error Description Error Description Error Description Error Description Error Description Error Description"
+            message="Неверный логин или пароль"
+            description="Пожалуйста проверьте правильность введенных данных и повторите попытку"
             type="error"
             closable
             onClose={onClose}
