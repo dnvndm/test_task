@@ -5,7 +5,6 @@ import Hospitals from './components/HospitalsPage/Hospitals';
 
 function App() {
   const isAuth = useSelector(state => state.login.isAuth)
-  console.log(isAuth)
   return (
     <BrowserRouter className="App">
       <Route exact path="/">

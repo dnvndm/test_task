@@ -1,6 +1,5 @@
 import { SET_USER_DATA } from "../types"
 import { authAPI } from "../../api"
-import { Redirect } from "react-router-dom"
 
 const initialState = {
     username: null,
